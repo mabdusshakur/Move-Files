@@ -19,8 +19,18 @@ namespace Move_Files
             InitializeComponent();
         }
 
-        private void CopyPngFiles(string sourcePath, string destinationPath)
+        private int GetTotalFilesCount(string path)
         {
+            return Directory.EnumerateFiles(path, "*", SearchOption.AllDirectories).Count();
+        }
+
+        private void CopyPngFiles(string sourcePath, string destinationPath, System.Windows.Forms.ProgressBar progressBar)
+        {
+            progressBar.Minimum = 0;
+            progressBar.Maximum = GetTotalFilesCount(sourcePath); // Calculate total files in advance
+
+            int copiedFiles = 0;
+
             // Validate input paths
             if (!Directory.Exists(sourcePath))
             {
@@ -46,6 +56,8 @@ namespace Move_Files
                 {
                     // Copy the file
                     File.Copy(file, destinationFile);
+                    copiedFiles++;
+                    progressBar.Value = copiedFiles;
                 }
             }
         }
@@ -91,7 +103,7 @@ namespace Move_Files
 
         private void move_btn_Click(object sender, EventArgs e)
         {
-            CopyPngFiles(target_folder_path_tb.Text, destination_folder_path_tb.Text);
+            CopyPngFiles(target_folder_path_tb.Text, destination_folder_path_tb.Text, progress_bar);
         }
     }
 }
