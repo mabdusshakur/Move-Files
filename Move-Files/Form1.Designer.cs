@@ -28,11 +28,13 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.folderBrowserDialog1 = new System.Windows.Forms.FolderBrowserDialog();
+            this.target_folder_dialog = new System.Windows.Forms.FolderBrowserDialog();
             this.target_folder_path_tb = new System.Windows.Forms.TextBox();
             this.target_folder_btn = new System.Windows.Forms.Button();
             this.destination_folder_btn = new System.Windows.Forms.Button();
             this.destination_folder_path_tb = new System.Windows.Forms.TextBox();
+            this.destination_folder_dialog = new System.Windows.Forms.FolderBrowserDialog();
+            this.move_btn = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // target_folder_path_tb
@@ -50,6 +52,7 @@
             this.target_folder_btn.TabIndex = 1;
             this.target_folder_btn.Text = "Target";
             this.target_folder_btn.UseVisualStyleBackColor = true;
+            this.target_folder_btn.Click += new System.EventHandler(this.target_folder_btn_Click);
             // 
             // destination_folder_btn
             // 
@@ -59,6 +62,7 @@
             this.destination_folder_btn.TabIndex = 3;
             this.destination_folder_btn.Text = "Destination";
             this.destination_folder_btn.UseVisualStyleBackColor = true;
+            this.destination_folder_btn.Click += new System.EventHandler(this.destination_folder_btn_Click);
             // 
             // destination_folder_path_tb
             // 
@@ -67,11 +71,22 @@
             this.destination_folder_path_tb.Size = new System.Drawing.Size(395, 20);
             this.destination_folder_path_tb.TabIndex = 2;
             // 
+            // move_btn
+            // 
+            this.move_btn.Location = new System.Drawing.Point(12, 63);
+            this.move_btn.Name = "move_btn";
+            this.move_btn.Size = new System.Drawing.Size(79, 41);
+            this.move_btn.TabIndex = 4;
+            this.move_btn.Text = "Move";
+            this.move_btn.UseVisualStyleBackColor = true;
+            this.move_btn.Click += new System.EventHandler(this.move_btn_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(500, 116);
+            this.ClientSize = new System.Drawing.Size(495, 115);
+            this.Controls.Add(this.move_btn);
             this.Controls.Add(this.destination_folder_btn);
             this.Controls.Add(this.destination_folder_path_tb);
             this.Controls.Add(this.target_folder_btn);
@@ -86,11 +101,13 @@
 
         #endregion
 
-        private System.Windows.Forms.FolderBrowserDialog folderBrowserDialog1;
+        private System.Windows.Forms.FolderBrowserDialog target_folder_dialog;
         private System.Windows.Forms.TextBox target_folder_path_tb;
         private System.Windows.Forms.Button target_folder_btn;
         private System.Windows.Forms.Button destination_folder_btn;
         private System.Windows.Forms.TextBox destination_folder_path_tb;
+        private System.Windows.Forms.FolderBrowserDialog destination_folder_dialog;
+        private System.Windows.Forms.Button move_btn;
     }
 }
 
