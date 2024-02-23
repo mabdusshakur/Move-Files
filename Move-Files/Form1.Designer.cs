@@ -86,23 +86,23 @@
             // file_type_cb
             // 
             this.file_type_cb.FormattingEnabled = true;
-            this.file_type_cb.Location = new System.Drawing.Point(97, 64);
+            this.file_type_cb.Location = new System.Drawing.Point(97, 63);
             this.file_type_cb.Name = "file_type_cb";
             this.file_type_cb.Size = new System.Drawing.Size(121, 21);
             this.file_type_cb.TabIndex = 5;
             // 
             // progress_bar
             // 
-            this.progress_bar.Location = new System.Drawing.Point(224, 64);
+            this.progress_bar.Location = new System.Drawing.Point(12, 136);
             this.progress_bar.Name = "progress_bar";
-            this.progress_bar.Size = new System.Drawing.Size(264, 40);
+            this.progress_bar.Size = new System.Drawing.Size(476, 23);
             this.progress_bar.TabIndex = 6;
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(495, 112);
+            this.ClientSize = new System.Drawing.Size(495, 171);
             this.Controls.Add(this.progress_bar);
             this.Controls.Add(this.file_type_cb);
             this.Controls.Add(this.move_btn);

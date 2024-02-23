@@ -21,7 +21,7 @@ namespace Move_Files
 
         private int GetTotalFilesCount(string path)
         {
-            return Directory.EnumerateFiles(path, "*", SearchOption.AllDirectories).Count();
+            return Directory.EnumerateFiles(path, "*" + file_type_cb.Text, SearchOption.AllDirectories).Count();
         }
 
         private void CopyPngFiles(string sourcePath, string destinationPath, System.Windows.Forms.ProgressBar progressBar)
