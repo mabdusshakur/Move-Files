@@ -8,6 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace Move_Files
 {
@@ -32,7 +33,7 @@ namespace Move_Files
             }
 
             // Enumerate files recursively
-            foreach (string file in Directory.EnumerateFiles(sourcePath, "*.png", SearchOption.AllDirectories))
+            foreach (string file in Directory.EnumerateFiles(sourcePath, "*"+ file_type_cb.Text, SearchOption.AllDirectories))
             {
                 string destinationFile = Path.Combine(destinationPath, Path.GetFileName(file));
 
@@ -49,12 +50,35 @@ namespace Move_Files
             }
         }
 
+        private void PopulateComboBoxWithFileTypes(string sourcePath)
+        {
+            if (!Directory.Exists(sourcePath))
+            {
+                return; // Handle non-existent source path
+            }
+
+            // Enumerate files recursively
+            var fileInfos = Directory.EnumerateFiles(sourcePath, "*", SearchOption.AllDirectories);
+
+            // Extract and group file extensions
+            var fileTypes = fileInfos
+                .Select(fi => Path.GetExtension(fi).ToLowerInvariant()) // Convert to lowercase for case-insensitivity
+                .Where(ext => !string.IsNullOrEmpty(ext)) // Exclude empty extensions
+                .GroupBy(ext => ext)
+                .Select(group => group.Key);
+
+            // Add file types to combo box
+            file_type_cb.Items.Clear();
+            file_type_cb.Items.AddRange(fileTypes.ToArray());
+        }
+
         private void target_folder_btn_Click(object sender, EventArgs e)
         {
             if (target_folder_dialog.ShowDialog() == DialogResult.OK)
             {
                 target_folder_path_tb.Text = target_folder_dialog.SelectedPath.ToString();
             }
+            PopulateComboBoxWithFileTypes(target_folder_path_tb.Text);
         }
 
         private void destination_folder_btn_Click(object sender, EventArgs e)
